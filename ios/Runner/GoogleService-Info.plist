@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>121362647591-6290jqm1vc8r3rkea6o8chqkb3ji6jb5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.121362647591-6290jqm1vc8r3rkea6o8chqkb3ji6jb5</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>121362647591-kd936sqhm83prruk75rn00em949g1qjf.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBZ8pgwcRZ4UdVqDe5wtltsd-gPqpC6eP4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>121362647591</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fluttergreenrecycle.app</string>
+	<key>PROJECT_ID</key>
+	<string>latihan-firebase-10dbc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>latihan-firebase-10dbc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:121362647591:ios:b2736f00a41bb3ffc4dc02</string>
+</dict>
+</plist>
