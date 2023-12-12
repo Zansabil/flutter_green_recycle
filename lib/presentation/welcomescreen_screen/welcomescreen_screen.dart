@@ -1,3 +1,5 @@
+import 'package:flutter_green_recycle/presentation/login_screen/login_screen.dart';
+
 import 'controller/welcomescreen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_green_recycle/core/app_export.dart';
@@ -64,6 +66,7 @@ class WelcomescreenScreen extends GetWidget<WelcomescreenController> {
                               CustomTextStyles.titleMediumPrimary_1,
                           onPressed: () {
                             onTapMulaiMasuk();
+                          
                           })
                     ]))));
   }

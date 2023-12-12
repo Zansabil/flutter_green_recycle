@@ -1,4 +1,7 @@
-import 'controller/login_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_green_recycle/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:flutter_green_recycle/global/common/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_green_recycle/core/app_export.dart';
 import 'package:flutter_green_recycle/core/utils/validation_functions.dart';
@@ -6,11 +9,28 @@ import 'package:flutter_green_recycle/widgets/custom_outlined_button.dart';
 import 'package:flutter_green_recycle/widgets/custom_text_form_field.dart';
 import 'package:flutter_green_recycle/domain/googleauth/google_auth_helper.dart';
 
-// ignore_for_file: must_be_immutable
-class LoginScreen extends GetWidget<LoginController> {
-  LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen ({Key? key}) : super(key: key);
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+class _LoginScreenState extends State<LoginScreen> {
+    bool _isSigning = false;
 
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  bool _isShowPassword = false;
+
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+}
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +39,7 @@ class LoginScreen extends GetWidget<LoginController> {
         child: Scaffold(
             resizeToAvoidBottomInset: false,
             body: Form(
-                key: _formKey,
+                
                 child: Container(
                     width: double.maxFinite,
                     padding:
@@ -71,7 +91,7 @@ class LoginScreen extends GetWidget<LoginController> {
   /// Section Widget
   Widget _buildEmailField() {
     return CustomTextFormField(
-        controller: controller.emailFieldController,
+        controller: _emailController,
         hintText: "msg_youremail_email_com".tr,
         textInputType: TextInputType.emailAddress,
         validator: (value) {
@@ -84,15 +104,18 @@ class LoginScreen extends GetWidget<LoginController> {
 
   /// Section Widget
   Widget _buildPasswordField() {
-    return Obx(() => CustomTextFormField(
-        controller: controller.passwordFieldController,
+    return CustomTextFormField(
+        controller: _passwordController,
         hintText: "lbl_yourpassword".tr,
         textInputAction: TextInputAction.done,
         textInputType: TextInputType.visiblePassword,
         suffix: InkWell(
             onTap: () {
-              controller.isShowPassword.value =
-                  !controller.isShowPassword.value;
+              setState(() {
+          // Atur nilai _isShowPassword menjadi kebalikannya
+          _isShowPassword = !_isShowPassword;
+            });
+        
             },
             child: Container(
                 margin: EdgeInsets.fromLTRB(30.h, 12.v, 20.h, 12.v),
@@ -107,8 +130,8 @@ class LoginScreen extends GetWidget<LoginController> {
           }
           return null;
         },
-        obscureText: controller.isShowPassword.value,
-        contentPadding: EdgeInsets.only(left: 20.h, top: 12.v, bottom: 12.v)));
+        obscureText: !_isShowPassword,
+        contentPadding: EdgeInsets.only(left: 20.h, top: 12.v, bottom: 12.v));
   }
 
   /// Section Widget
@@ -169,17 +192,42 @@ class LoginScreen extends GetWidget<LoginController> {
 
   /// Navigates to the homecontainerScreen when the action is triggered.
   onTapLoginButton() {
-    Get.toNamed(
-      AppRoutes.homecontainerScreen,
-    );
+    
+      
+      _signIn();
+    
   }
+  void _signIn() async {
+  
+    setState(() {
+      _isSigning = true;
+    });
+
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    setState(() {
+      _isSigning = false;
+    });
+
+    if (user != null) {
+      showToast(message: "Pengguna berhasil login");
+      Navigator.pushNamed(context, "/homecontainer_screen");
+    } else {
+      showToast(message: "Akun tidak di temukan");
+}
+  }
+
 
   /// Navigates to the registerScreen when the action is triggered.
   onTapTxtDoesnthavean() {
     Get.toNamed(
-      AppRoutes.registerScreen,
-    );
+      AppRoutes.registerScreen);
+      
   }
+  
 
   onTapSignInWithGoogleButton() async {
     await GoogleAuthHelper().googleSignInProcess().then((googleUser) {
@@ -191,5 +239,11 @@ class LoginScreen extends GetWidget<LoginController> {
     }).catchError((onError) {
       Get.snackbar('Error', onError.toString());
     });
+  }
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<bool>('_isSigning', _isSigning));
+    properties.add(DiagnosticsProperty<FirebaseAuth>('_firebaseAuth', _firebaseAuth));
   }
 }

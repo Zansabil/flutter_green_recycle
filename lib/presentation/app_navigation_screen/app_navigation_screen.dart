@@ -89,6 +89,10 @@ class AppNavigationScreen extends GetWidget<AppNavigationController> {
                           onTapScreenTitle: () =>
                               onTapScreenTitle(AppRoutes.informationScreen),
                         ),
+                        _buildScreenTitle(screenTitle: "Ordered".tr,
+                        onTapScreenTitle:() =>
+                        onTapScreenTitle(AppRoutes.orderedPage),
+                    ),
                       ],
                     ),
                   ),

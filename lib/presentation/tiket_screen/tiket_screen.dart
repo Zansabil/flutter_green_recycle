@@ -1,3 +1,5 @@
+import 'package:flutter_green_recycle/presentation/ordered_page/ordered_page.dart';
+
 import 'controller/tiket_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_green_recycle/core/app_export.dart';
@@ -114,9 +116,16 @@ class TiketScreen extends GetWidget<TiketController> {
                   SizedBox(height: 15.v),
                   CustomElevatedButton(
                       text: "lbl_cek_pesanan".tr,
-                      buttonStyle: CustomButtonStyles.fillPrimaryTL14)
-                ])),
-            bottomNavigationBar: _buildBottomBar()));
+                      buttonStyle: CustomButtonStyles.fillPrimaryTL14,
+                
+                onPressed: () {
+                          Get.to(OrderedtabcontainerPage());
+            
+  },
+                  
+  alignment: Alignment.bottomCenter)
+                  ])))
+        );
   }
 
   /// Section Widget

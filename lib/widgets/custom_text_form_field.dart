@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_green_recycle/core/app_export.dart';
 
 class CustomTextFormField extends StatelessWidget {
+  
+  var onSaved;
+
   CustomTextFormField({
     Key? key,
     this.alignment,
@@ -24,7 +27,7 @@ class CustomTextFormField extends StatelessWidget {
     this.borderDecoration,
     this.fillColor,
     this.filled = true,
-    this.validator,
+    this.validator, this.onSaved,
   }) : super(
           key: key,
         );
