@@ -137,7 +137,7 @@ class TiketScreen extends GetWidget<TiketController> {
             imagePath: ImageConstant.imgIconlyLightArrow,
             margin: EdgeInsets.only(left: 30.h, top: 13.v, bottom: 34.v),
             onTap: () {
-              onTapIconlyLightArrow();
+              Get.back();
             }),
         centerTitle: true,
         title: AppbarSubtitle(text: "lbl_pembayaran".tr),

@@ -45,7 +45,7 @@ class PickuptrashScreen extends GetWidget<PickuptrashController> {
                   imagePath: ImageConstant.imgIconlyLightArrow,
                   margin: EdgeInsets.only(left: 30.h, bottom: 1.v),
                   onTap: () {
-                    onTapIconlyLightArrow();
+                    Get.back();
                   }),
               centerTitle: true,
               title: AppbarSubtitle(text: "lbl_jemput_sampah".tr),
@@ -127,9 +127,5 @@ class PickuptrashScreen extends GetWidget<PickuptrashController> {
   }
 
   /// Navigates to the homecontainerScreen when the action is triggered.
-  onTapIconlyLightArrow() {
-    Get.toNamed(
-      AppRoutes.homecontainerScreen,
-    );
-  }
+  
 }

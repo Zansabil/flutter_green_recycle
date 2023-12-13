@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_green_recycle/core/app_export.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  
   var onSaved;
 
   CustomTextFormField({
@@ -27,51 +26,30 @@ class CustomTextFormField extends StatelessWidget {
     this.borderDecoration,
     this.fillColor,
     this.filled = true,
-    this.validator, this.onSaved,
-  }) : super(
-          key: key,
-        );
+    this.validator,
+    this.onSaved,
+  }) : super(key: key);
 
   final Alignment? alignment;
-
   final double? width;
-
   final TextEditingController? controller;
-
   final FocusNode? focusNode;
-
   final bool? autofocus;
-
   final TextStyle? textStyle;
-
   final bool? obscureText;
-
   final TextInputAction? textInputAction;
-
   final TextInputType? textInputType;
-
   final int? maxLines;
-
   final String? hintText;
-
   final TextStyle? hintStyle;
-
   final Widget? prefix;
-
   final BoxConstraints? prefixConstraints;
-
   final Widget? suffix;
-
   final BoxConstraints? suffixConstraints;
-
   final EdgeInsets? contentPadding;
-
   final InputBorder? borderDecoration;
-
   final Color? fillColor;
-
   final bool? filled;
-
   final FormFieldValidator<String>? validator;
 
   @override
@@ -90,7 +68,7 @@ class CustomTextFormField extends StatelessWidget {
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
           autofocus: autofocus!,
-          style: textStyle ?? CustomTextStyles.bodySmallPrimaryContainer,
+          style: textStyle ?? CustomTextStyles.bodySmallPrimaryContainer.copyWith(color: Colors.black), // Ganti warna teks menjadi hitam
           obscureText: obscureText!,
           textInputAction: textInputAction,
           keyboardType: textInputType,
@@ -99,6 +77,7 @@ class CustomTextFormField extends StatelessWidget {
           validator: validator,
         ),
       );
+
   InputDecoration get decoration => InputDecoration(
         hintText: hintText ?? "",
         hintStyle: hintStyle ?? CustomTextStyles.titleSmallGray300,

@@ -6,6 +6,7 @@ import '../core/app_export.dart';
 /// Additionally, this class includes extensions on [TextStyle] to easily apply specific font families to text.
 
 class CustomTextStyles {
+
   // Body text style
   static get bodyLargeOnPrimaryContainer => theme.textTheme.bodyLarge!.copyWith(
         color: theme.colorScheme.onPrimaryContainer,
@@ -69,6 +70,9 @@ class CustomTextStyles {
       );
   static get labelLargeWhiteA70001 => theme.textTheme.labelLarge!.copyWith(
         color: appTheme.whiteA70001,
+  );
+        static get labelLargeBlack70001 => theme.textTheme.labelLarge!.copyWith(
+        color: appTheme.BlackA70001,
       );
   static get labelLargeWhiteA70001Bold => theme.textTheme.labelLarge!.copyWith(
         color: appTheme.whiteA70001,

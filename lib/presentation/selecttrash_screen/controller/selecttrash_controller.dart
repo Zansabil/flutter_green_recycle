@@ -7,4 +7,6 @@ import 'package:flutter_green_recycle/presentation/selecttrash_screen/models/sel
 /// current selecttrashModelObj
 class SelecttrashController extends GetxController {
   Rx<SelecttrashModel> selecttrashModelObj = SelecttrashModel().obs;
+
+  get isButtonPressed => null;
 }

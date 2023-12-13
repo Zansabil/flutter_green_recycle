@@ -5,7 +5,7 @@ import 'package:flutter_green_recycle/core/app_export.dart';
 import 'package:flutter_green_recycle/widgets/custom_elevated_button.dart';
 
 // ignore: must_be_immutable
-class SelecttrashItemWidget extends StatelessWidget {
+class SelecttrashItemWidget extends StatefulWidget {
   SelecttrashItemWidget(
     this.selecttrashItemModelObj, {
     Key? key,
@@ -15,7 +15,13 @@ class SelecttrashItemWidget extends StatelessWidget {
 
   SelecttrashItemModel selecttrashItemModelObj;
 
+  @override
+  State<SelecttrashItemWidget> createState() => _SelecttrashItemWidgetState();
+}
+
+class _SelecttrashItemWidgetState extends State<SelecttrashItemWidget> {
   var controller = Get.find<SelecttrashController>();
+  bool isButtonPressed = false; // Tambahkan variabel untuk menangani status tombol ditekan
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,7 @@ class SelecttrashItemWidget extends StatelessWidget {
         children: [
           Obx(
             () => CustomImageView(
-              imagePath: selecttrashItemModelObj.image!.value,
+              imagePath: widget.selecttrashItemModelObj.image!.value,
               height: 175.adaptSize,
               width: 175.adaptSize,
               radius: BorderRadius.circular(
@@ -51,12 +57,29 @@ class SelecttrashItemWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         SizedBox(height: 51.v),
-                        CustomElevatedButton(
-                          height: 26.v,
-                          width: 175.h,
-                          text: "lbl_tambah".tr,
-                          buttonTextStyle:
-                              CustomTextStyles.labelLargeWhiteA70001,
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              isButtonPressed = !isButtonPressed;
+                            });
+                          },
+                          child: Container(
+                            height: 26.v,
+                            width: 175.h,
+                            color: isButtonPressed
+                                ? Colors.orange // Ganti dengan warna oranye
+                                : appTheme.greenA400,
+                            child: Center(
+                              child: Text(
+                                isButtonPressed
+                                    ? "Ditambahkan".tr // Ganti dengan teks yang diinginkan
+                                    : "lbl_tambah".tr,
+                                style: isButtonPressed
+                                    ? CustomTextStyles.labelLargeWhiteA70001
+                                    : CustomTextStyles.labelLargeBlack70001,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -82,6 +105,16 @@ class SelecttrashItemWidget extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
-                        )])))]))]));
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
